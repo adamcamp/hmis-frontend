@@ -6,8 +6,8 @@ WORKDIR /app
 # Copy package files
 COPY package.json yarn.lock ./
 
-# Install dependencies
-RUN yarn install --frozen-lockfile
+# Install dependencies (HUSKY=0 skips git hooks setup which fails without a .git dir)
+RUN HUSKY=0 yarn install --frozen-lockfile
 
 # Copy source
 COPY . .
