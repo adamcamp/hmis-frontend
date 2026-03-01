@@ -16,6 +16,14 @@ export const useActiveNavItem = () => {
   return React.useMemo(() => {
     const val = pathname.split('/').find((s) => !!s);
     switch (val) {
+      case 'intake':
+        return 'intake';
+      case 'caseload':
+        return 'caseload';
+      case 'matches':
+        return 'matches';
+      case 'management':
+        return 'management';
       case undefined:
       case 'client':
         return 'client';
@@ -57,24 +65,32 @@ const ToolbarMenu: React.FC<ToolbarMenuProps> = ({ mobile }) => {
     })[] = useMemo(() => {
     return [
       {
-        hide: !showUserDashboard,
-        path: Routes.USER_DASHBOARD,
-        id: 'navToUserDashboard',
-        activeItemPathIncludes: 'dashboard',
-        title: 'Dashboard',
+        permissions: ['canEditClients'],
+        path: Routes.INTAKE,
+        id: 'navToIntake',
+        activeItemPathIncludes: 'intake',
+        title: 'Intake',
       },
       {
         permissions: ['canViewClients'],
-        path: '/',
-        id: 'navToClients',
-        activeItemPathIncludes: 'client',
-        title: 'Clients',
+        path: Routes.CASELOAD,
+        id: 'navToCaseload',
+        activeItemPathIncludes: 'caseload',
+        title: 'Case Management',
       },
       {
-        path: Routes.ALL_PROJECTS,
-        id: 'navToProjects',
-        activeItemPathIncludes: 'project',
-        title: 'Projects',
+        permissions: ['canViewClients'],
+        path: Routes.MY_QUEUE,
+        id: 'navToMatches',
+        activeItemPathIncludes: 'matches',
+        title: 'Matches',
+      },
+      {
+        permissions: ['canViewClients'],
+        path: Routes.MANAGEMENT_DASHBOARD,
+        id: 'navToManagement',
+        activeItemPathIncludes: 'management',
+        title: 'Management',
       },
       {
         path: Routes.ADMIN,
@@ -84,7 +100,7 @@ const ToolbarMenu: React.FC<ToolbarMenuProps> = ({ mobile }) => {
         hide: !showAdminDashboard,
       },
     ];
-  }, [showAdminDashboard, showUserDashboard]);
+  }, [showAdminDashboard]);
 
   const activeItem = useActiveNavItem();
 

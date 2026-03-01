@@ -1,7 +1,9 @@
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import MenuIcon from '@mui/icons-material/Menu';
-import { AppBar, Box, CssBaseline, IconButton, Toolbar } from '@mui/material';
+import { AppBar, Box, CssBaseline, IconButton, Toolbar, Tooltip } from '@mui/material';
 import { Stack } from '@mui/system';
 import * as React from 'react';
+import { useNavigate } from 'react-router-dom';
 import RouterLink from '../elements/RouterLink';
 import NotFound from '../pages/NotFound';
 import {
@@ -24,6 +26,7 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 import useIsPrintView from '@/hooks/useIsPrintView';
 import { useHmisAppSettings } from '@/modules/hmisAppSettings/useHmisAppSettings';
 import OmniSearch from '@/modules/search/components/OmniSearch';
+import { Routes } from '@/routes/routes';
 import {
   useGetRootPermissionsQuery,
   useGetUserDashboardConfigQuery,
@@ -37,6 +40,7 @@ interface Props {
 const FOCUS_TARGET_ID = 'focusable-main';
 
 const MainLayout: React.FC<Props> = ({ mobileMenuContext, children }) => {
+  const navigate = useNavigate();
   const { appName } = useHmisAppSettings();
   const isPrint = useIsPrintView();
 
@@ -144,6 +148,15 @@ const MainLayout: React.FC<Props> = ({ mobileMenuContext, children }) => {
             >
               <ToolbarMenu />
               <OmniSearch />
+              <Tooltip title='Getting Started Tour'>
+                <IconButton
+                  aria-label='Help'
+                  onClick={() => navigate(Routes.HELP_TOUR)}
+                  sx={{ color: 'text.secondary' }}
+                >
+                  <HelpOutlineIcon />
+                </IconButton>
+              </Tooltip>
               <UserMenu />
             </Stack>
           )}

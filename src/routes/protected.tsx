@@ -114,6 +114,14 @@ import ProjectEsgFundingReport from '@/modules/projects/components/ProjectEsgFun
 import ProjectExternalFormSubmissions from '@/modules/projects/components/ProjectExternalFormSubmissions';
 import ProjectOverviewPage from '@/modules/projects/components/ProjectOverviewPage';
 
+import IntakePage from '@/modules/intake/components/IntakePage';
+import IntakeShelterPage from '@/modules/intake/components/IntakeShelterPage';
+import CaseloadPage from '@/modules/caseload/components/CaseloadPage';
+import MyQueuePage from '@/modules/matches/components/MyQueuePage';
+import ManagementDashboardPage from '@/modules/management/components/ManagementDashboardPage';
+import ExportPage from '@/modules/management/components/ExportPage';
+import BedsPage from '@/modules/management/components/BedsPage';
+import OnboardingTourPage from '@/modules/help/components/OnboardingTourPage';
 import ClientScanCards from '@/modules/scanCards/components/ClientScanCards';
 import ClientSearchPage from '@/modules/search/components/ClientSearchPage';
 
@@ -1084,6 +1092,38 @@ export const protectedRoutes: RouteNode[] = [
           },
         ],
       },
+      // Frederick CAS sections
+      { path: Routes.INTAKE, element: <IntakePage /> },
+      {
+        path: Routes.INTAKE_FAMILY,
+        element: (
+          <RootPermissionsFilter permissions='canEditClients'>
+            <IntakeShelterPage shelterType='family' />
+          </RootPermissionsFilter>
+        ),
+      },
+      {
+        path: Routes.INTAKE_INDIVIDUAL,
+        element: (
+          <RootPermissionsFilter permissions='canEditClients'>
+            <IntakeShelterPage shelterType='individual' />
+          </RootPermissionsFilter>
+        ),
+      },
+      { path: Routes.CASELOAD, element: <CaseloadPage /> },
+      { path: Routes.CASELOAD_FAMILY, element: <CaseloadPage defaultSite='family' /> },
+      { path: Routes.CASELOAD_INDIVIDUAL, element: <CaseloadPage defaultSite='individual' /> },
+      { path: Routes.CASELOAD_ALL, element: <CaseloadPage defaultSite='all' /> },
+      { path: Routes.MY_QUEUE, element: <MyQueuePage /> },
+      { path: Routes.ALL_MATCHES, element: <MyQueuePage /> },
+      { path: Routes.MANAGEMENT, element: <ManagementDashboardPage /> },
+      { path: Routes.MANAGEMENT_DASHBOARD, element: <ManagementDashboardPage /> },
+      { path: Routes.MANAGEMENT_PROGRAMS, element: <ManagementDashboardPage /> },
+      { path: Routes.MANAGEMENT_REPORTS, element: <ManagementDashboardPage /> },
+      { path: Routes.MANAGEMENT_EXPORT, element: <ExportPage /> },
+      { path: Routes.MANAGEMENT_BEDS, element: <BedsPage /> },
+      { path: Routes.HELP_TOUR, element: <OnboardingTourPage /> },
+
       { path: '/', element: <ClientSearchPage /> },
       {
         path: '*',

@@ -18,6 +18,25 @@ export const Routes = {
   USER_DASHBOARD: '/dashboard',
   MY_DASHBOARD: '/my-dashboard', // maintained for backwards compat
 
+  // Frederick CAS top-level sections
+  INTAKE: '/intake',
+  INTAKE_FAMILY: '/intake/family',
+  INTAKE_INDIVIDUAL: '/intake/individual',
+  INTAKE_IMPORT: '/intake/import',
+  CASELOAD: '/caseload',
+  CASELOAD_FAMILY: '/caseload/family',
+  CASELOAD_INDIVIDUAL: '/caseload/individual',
+  CASELOAD_ALL: '/caseload/all',
+  MY_QUEUE: '/matches/queue',
+  ALL_MATCHES: '/matches/all',
+  MANAGEMENT: '/management',
+  MANAGEMENT_DASHBOARD: '/management/dashboard',
+  MANAGEMENT_PROGRAMS: '/management/programs',
+  MANAGEMENT_REPORTS: '/management/reports',
+  MANAGEMENT_BEDS: '/management/beds',
+  MANAGEMENT_EXPORT: '/management/export',
+  HELP_TOUR: '/help',
+
   // "Floating" referrals:
   REFERRAL: '/' + ReferralSubRoutes.ReferralPath,
   REFERRAL_STEP: '/' + ReferralSubRoutes.ReferralStepPath,
